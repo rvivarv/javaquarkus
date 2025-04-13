@@ -36,5 +36,4 @@ jobs:
         echo "Maven version set up"
         mvn --version
         echo "Quarkus dev"
-        chmod +x mvnw
-        ./mvnw quarkus:dev
+        mvn -B formatter:validate clean install --file pom.xml -Dnative=true
