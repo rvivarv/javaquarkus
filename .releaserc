@@ -2,9 +2,7 @@
 
     "branches": [
 
-        "master",
-
-        "dev"
+        "main"
 
     ],
 
@@ -45,9 +43,6 @@
         "@semantic-release/github"
 
 
-
-<span class="pi">]</span>
-
-
+]
 
 }
