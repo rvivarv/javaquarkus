@@ -14,7 +14,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
     - name: Checkout repository
-      uses: actions/checkout@v3
+    - uses: actions/checkout@v4
       run: | 
         echo "Repository checked out"
         pwd
@@ -26,6 +26,10 @@ jobs:
         java-version: '17'
         distribution: 'temurin'
         cache: maven
+      run: |
+        echo "Java version set up"
+        java -version
+        mvn --version
     - name: Build with Maven
       run: mvn -B package --file pom.xml
 
