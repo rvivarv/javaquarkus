@@ -1,3 +1,7 @@
+#author Robert Vivar 
+#date 2025-04-12
+#description Build and Test
+
 name: Build and Test
 
 on:
@@ -14,7 +18,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
     - name: Checkout repository
-    - uses: actions/checkout@v4
+      uses: actions/checkout@v4
       run: | 
         echo "Repository checked out"
         pwd
