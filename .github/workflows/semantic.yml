@@ -4,6 +4,10 @@ on: workflow_dispatch
     
 jobs:
   Semantic Release:
+    runs-on: ubuntu-latest
+    environment: dev
+  
+    steps:
     - name: Semantic Release
       uses: cycjimmy/semantic-release-action@v4
       env:
