@@ -36,4 +36,5 @@ jobs:
         echo "Maven version set up"
         mvn --version
         echo "Quarkus dev"
+        chmod +x mvnw
         ./mvnw quarkus:dev
