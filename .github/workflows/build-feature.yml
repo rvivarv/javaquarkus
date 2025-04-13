@@ -35,5 +35,5 @@ jobs:
         java -version
         echo "Maven version set up"
         mvn --version
-        echo "Quarkus dev"
+        echo "mvn -B clean install --file pom.xml -Dnative=true"
         mvn -B clean install --file pom.xml -Dnative=true
