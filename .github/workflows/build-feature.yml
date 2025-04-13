@@ -17,6 +17,7 @@ jobs:
   build-and-test:
 
     runs-on: ubuntu-latest
+    environment: dev
   
     steps:
     - name: Checkout repository
@@ -40,6 +41,5 @@ jobs:
 
     - name: Semantic Release
       uses: cycjimmy/semantic-release-action@v4
-      environment: dev
       env:
         GH_TOKEN: ${{ secrets.GH_TOKEN }}
