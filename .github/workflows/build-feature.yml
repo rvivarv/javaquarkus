@@ -8,18 +8,20 @@ on:
   push:
     branches: 
     - feature/*
-  pull_request:
-    branches: 
-    - feature/*
+#  pull_request:
+#    branches: 
+#    - feature/*
 
 
 jobs:
   build-and-test:
+
     runs-on: ubuntu-latest
+  
     steps:
     - name: Checkout repository
       uses: actions/checkout@v4
-      run: | 
+      run: 
         echo "Repository checked out"
         pwd
         ls -la
@@ -30,11 +32,9 @@ jobs:
         java-version: '17'
         distribution: 'temurin'
         cache: maven
-      run: |
+      run: 
         echo "Java version set up"
         java -version
         mvn --version
     - name: Build with Maven
       run: mvn -B package --file pom.xml
-
-
