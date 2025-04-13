@@ -37,3 +37,9 @@ jobs:
         mvn --version
         echo "mvn -B clean install --file pom.xml -Dnative=true"
         mvn -B clean install --file pom.xml -Dnative=true
+
+    - name: Semantic Release
+      uses: cycjimmy/semantic-release-action@v4
+      environment: dev
+      env:
+        GH_TOKEN: ${{ secrets.GH_TOKEN }}
