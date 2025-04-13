@@ -33,6 +33,7 @@ jobs:
       run: |
         echo "Java version set up"
         java -version
+        echo "Maven version set up"
         mvn --version
+        echo "Quarkus dev"
         ./mvnw quarkus:dev
-        echo "termine"
