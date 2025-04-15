@@ -19,6 +19,8 @@
 ###
 FROM quay.io/quarkus/quarkus-micro-image:2.0
 WORKDIR /work/
+ARG ARG DB_PASSWORD
+ENV DB_PASSWORD=$DB_PASSWORD
 RUN chown 1001 /work \
     && chmod "g+rwX" /work \
     && chown 1001:root /work
