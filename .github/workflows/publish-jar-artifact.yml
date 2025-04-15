@@ -3,7 +3,7 @@ on:
   repository_dispatch:
     types: [publish-jar-artifact]
 jobs:
-  download-artifact:
+  download-artifact-job:
     runs-on: ubuntu-latest
     env:
       ARTIFACT_NAME: 'quarkus-poc-1.0.0-SNAPSHOT.jar'
@@ -19,8 +19,7 @@ jobs:
       #############################################################
       # 1- Download source code from the base branch
       #############################################################
-      - name: Checkout base branch
-        uses: actions/checkout@v3
+      - uses: actions/checkout@v3
         with:
           ref: ${{ gitHub.event.client_payload.base_branch }}
           fetch-depth: 0
@@ -39,7 +38,7 @@ jobs:
           distribution: 'temurin'
 
       - name: Cache Maven
-        uses: actions/cache@v4
+        uses: actions/cache@v3
         with:
           path: ~/.m2/repository
           key: ${{ runner.os }}-maven-${{ hashFiles('**/pom.xml') }}
