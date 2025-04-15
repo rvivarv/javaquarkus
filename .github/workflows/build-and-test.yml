@@ -81,7 +81,7 @@ jobs:
     # 3 - Push changes after merge 
     ############################################################
     - name: Push changes after merge
-      if: ${{ success() }}
+      if: ${{ (success()) && (github.event.pull_request.head.ref) }}
       uses: ad-m/github-push-action@master
       with:
         github_token: ${{ secrets.GITHUB_TOKEN }}
