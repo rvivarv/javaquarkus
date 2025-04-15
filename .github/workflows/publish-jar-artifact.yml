@@ -57,7 +57,7 @@ jobs:
   ################################################################
       - name: Publish Package
         if: success()
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@v4
         with:
           name: artifactrjar
           path: ${{ github.workspace }}/target/quarkus-app/app/${{ env.ARTIFACT_NAME }}
