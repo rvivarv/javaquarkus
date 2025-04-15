@@ -23,7 +23,7 @@ jobs:
         id: download-artifact
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
-          workflow: publish-jar-as-artifact.yaml
+          workflow: publish-jar-artifact.yaml
           workflow_conclusion: success
           name: artifactjar
           path: /tmp/artifactjar
