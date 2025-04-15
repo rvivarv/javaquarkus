@@ -1,0 +1,64 @@
+name: Publish jar artifact
+on:
+  repository_dispatch:
+    types: [publish-jar-artifact]
+jobs:
+  download-artifact-job:
+    runs-on: ubuntu-latest
+    env:
+      ARTIFACT_NAME: 'quarkus-poc-1.0.0-SNAPSHOT.jar'
+    permissions:
+      contents: write
+      pull-requests: write
+
+    steps:
+      - name: Debug Payload
+        run: |
+          echo " ${{ gitHub.event.client_payload.base_branch }} "
+          
+
+      #############################################################
+      # 1- Download source code from the base branch
+      #############################################################
+      - uses: actions/checkout@v3
+        with:
+          ref: ${{ gitHub.event.client_payload.base_branch }}
+          fetch-depth: 0
+      - name: check last hashid
+        run: |
+          git log -2
+
+    ################################################################
+    # Setup Java 
+    ################################################################
+
+      - name: Set up JDK 17
+        uses: actions/setup-java@v4
+        with:
+          java-version: '17'
+          distribution: 'temurin'
+
+      - name: Cache Maven
+        uses: actions/cache@v3
+        with:
+          path: ~/.m2/repository
+          key: ${{ runner.os }}-maven-${{ hashFiles('**/pom.xml') }}
+          restore-keys: |
+            ${{ runner.os }}-maven-
+      
+
+      - name: Build with Maven
+        run: |
+          mvn clean test package -DskipTests=true --batch-mode --update-snapshots
+          echo ls -R target/
+          echo ls -la
+
+  ################################################################
+  # 4 - Publish it as artifact
+  ################################################################
+      - name: Publish Package
+        if: success()
+        uses: actions/upload-artifact@v4
+        with:
+          name: artifactrjar
+          path: ${{ github.workspace }}/target/quarkus-app/app/${{ env.ARTIFACT_NAME }}

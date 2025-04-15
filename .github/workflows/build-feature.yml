@@ -2,24 +2,21 @@
 #date 2025-04-12
 #description Build and Test
 
-name: Build and Test
+name: Build and Test feature branch
 
 on:
   push:
     branches: 
-    - 'main'
     - feature/*
   pull_request:
     branches: 
-    - 'main'
-    - feature/*
+    - 'feature'
 
 
 jobs:
   build-and-test:
 
     runs-on: ubuntu-latest
-    environment: dev
   
     steps:
     - name: Checkout repository
@@ -41,7 +38,3 @@ jobs:
         echo "mvn -B clean install --file pom.xml -Dnative=true"
         mvn -B clean install --file pom.xml -Dnative=true
 
-    - name: Semantic Release
-      uses: cycjimmy/semantic-release-action@v4
-      env:
-        GH_TOKEN: ${{ secrets.GH_TOKEN }}
