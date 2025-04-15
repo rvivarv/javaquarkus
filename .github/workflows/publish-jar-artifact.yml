@@ -14,7 +14,8 @@ jobs:
     steps:
       - name: Debug Payload
         run: |
-          echo " ${{ gitHub.event.client_payload.base_branch }}
+          echo " ${{ gitHub.event.client_payload.base_branch }} "
+          
 
       #############################################################
       # 1- Download source code from the base branch
