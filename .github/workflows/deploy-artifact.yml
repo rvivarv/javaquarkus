@@ -134,7 +134,7 @@ jobs:
             JAR_FILE=${{ github.event.client_payload.artifact_name }}
             DB_PASSWORD=${{ secrets.DB_PASSWORD }}
           push : true # Push image to registry, false by deafult.
-          tags : ghcr.io/${{ github.repository_owner}}/cutomer-back:${{ github.sha }} # The image ful name, include repository, user, image name and tag 
+          tags : ghcr.io/${{ github.repository_owner}}/javaquarkus:${{ github.sha }} # The image ful name, include repository, user, image name and tag 
     
 
 
