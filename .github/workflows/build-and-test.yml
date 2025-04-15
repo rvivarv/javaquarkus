@@ -5,9 +5,17 @@
 name: Build and Test
 
 on:
+  push:
+    branches: [feat*,feature/*,fix/*]
   pull_request:
     branches: [develop]
-    type: [ opened , reopened ]
+    types: [opened, reopened]
+
+env:
+  MAVEN_OPTS: '-Xmx3200m'
+#  pull_request:
+#    branches: [develop]
+#    type: [ opened , reopened ]
 jobs:
   build-and-test:
     runs-on: ubuntu-latest
