@@ -19,12 +19,13 @@
 ###
 FROM quay.io/quarkus/quarkus-micro-image:2.0
 WORKDIR /work/
+ARG JAR_FILE
 ARG ARG DB_PASSWORD
 ENV DB_PASSWORD=$DB_PASSWORD
 RUN chown 1001 /work \
     && chmod "g+rwX" /work \
     && chown 1001:root /work
-COPY --chown=1001:root target/*-runner /work/application
+COPY --chown=1001:root $JAR_FILE /work/application
 
 EXPOSE 8080
 USER 1001
