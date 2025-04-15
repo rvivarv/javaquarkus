@@ -60,7 +60,7 @@ jobs:
         if: success()
         uses: actions/upload-artifact@v4
         with:
-          name: artifactrjar
+          name: artifactjar
           path: ${{ github.workspace }}/target/${{ env.ARTIFACT_NAME }}
 
 

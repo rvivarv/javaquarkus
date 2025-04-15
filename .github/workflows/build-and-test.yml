@@ -5,9 +5,12 @@
 name: Build and Test
 
 on:
+  push:
+    branches: [feat*,feature/*,fix/*]
   pull_request:
     branches: [develop]
-    type: [ opened , reopened ]
+    types: [opened, reopened]
+
 jobs:
   build-and-test:
     runs-on: ubuntu-latest
@@ -68,7 +71,7 @@ jobs:
     # 2- Merge to development branch
     #############################################################
     - name: Merge feature branch into 
-      if: ${{ success() }}
+      if: ${{ (success()) && (github.event.pull_request.head.ref) }}
       run: |
         git config --local user.email "email-of-workflow@user"
         git config --local user.name "Workflow-user"
@@ -78,7 +81,7 @@ jobs:
     # 3 - Push changes after merge 
     ############################################################
     - name: Push changes after merge
-      if: ${{ success() }}
+      if: ${{ (success()) && (github.event.pull_request.head.ref) }}
       uses: ad-m/github-push-action@master
       with:
         github_token: ${{ secrets.GITHUB_TOKEN }}
